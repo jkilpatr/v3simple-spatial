@@ -15,11 +15,9 @@ def index():
 # since this is a read only talk to the replicas
 @get('/db')
 def dbexample():
-    try:
-        conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user=os.environ.get('PG_USER'),
-                                host=os.environ.get('REPLICA_SERVICE_HOST'), password=os.environ.get('PG_PASSWORD'))
-    except:
-        print(os.environ.get('REPLICA_SERVICE_HOST'))
+    
+    conn = psycopg2.connect(database=os.environ.get('PG_DATABASE'), user=os.environ.get('PG_USER'),
+                            host=os.environ.get('REPLICA_SERVICE_HOST'), password=os.environ.get('PG_PASSWORD'))
 
     cur = conn.cursor()
     # cur.execute("""select parkid, name, ST_AsText(the_geom) from parkpoints limit 10""")
